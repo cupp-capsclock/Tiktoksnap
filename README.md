@@ -1,64 +1,69 @@
-# TikTokSnap
+<div align="center">
 
-Website downloader TikTok modern — download video tanpa watermark (MP4) dan ekstraksi audio (MP3), dengan UI clean, responsif, dan mode gelap/terang.
+# 🎵 TikTokSnap
 
-## 🗂️ Struktur Proyek
+**Website downloader TikTok modern — video tanpa watermark (MP4) dan ekstraksi audio (MP3).**
 
-```
-tiktoksnap/
-├── server.js              # Backend Express + endpoint ekstraksi TikTok
-├── package.json
-├── .env.example            # Contoh konfigurasi environment
-└── public/
-    ├── index.html           # Landing page (Tailwind CDN)
-    ├── css/style.css        # Glassmorphism, kartu, toast, animasi
-    └── js/app.js            # Validasi URL, clipboard, fetch API, history, toast
-```
+UI clean, responsif, dengan mode gelap/terang.
 
-## 🚀 Menjalankan secara lokal
+![Node.js](https://img.shields.io/badge/Node.js-339933?logo=node.js&logoColor=white)
+![Express](https://img.shields.io/badge/Express-000000?logo=express&logoColor=white)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-06B6D4?logo=tailwindcss&logoColor=white)
+![Vercel](https://img.shields.io/badge/Deployed_on-Vercel-000000?logo=vercel&logoColor=white)
+![License](https://img.shields.io/badge/License-MIT-blue.svg)
 
-```bash
-npm install
-cp .env.example .env
-npm start
-```
+**Dibuat oleh [mkdircup](https://github.com/mkdircup)**
 
-Buka `http://localhost:3000`.
+</div>
 
-## ⚙️ Cara kerja backend
+---
 
-`POST /api/tiktok` menerima `{ url }`, memvalidasi format URL TikTok, lalu meneruskan permintaan ke provider ekstraksi pihak ketiga (default: **tikwm.com**, API publik non-resmi yang umum dipakai untuk keperluan seperti ini) untuk mendapatkan:
+## ✨ Fitur
 
-- `videoNoWatermark` — URL MP4 tanpa watermark
-- `audio` — URL MP3 hasil ekstraksi
-- `cover`, `title`, `author`, `duration` — untuk preview
+- 🎬 **Download video tanpa watermark** dalam format MP4
+- 🎧 **Ekstraksi audio** ke MP3
+- 🖼️ **Preview** cover, judul, author, dan durasi sebelum mengunduh
+- 📋 **Tempel dari clipboard** dengan satu klik
+- ✅ **Validasi URL TikTok** langsung di sisi klien
+- 🕘 **Riwayat unduhan** untuk akses cepat
+- 🔔 **Notifikasi toast** untuk status dan error
+- 🌗 **Mode gelap/terang** dengan tampilan glassmorphism
+- 📱 **Responsif** untuk ponsel, tablet, dan desktop
+- 🛡️ **Rate limiting** bawaan untuk menjaga stabilitas layanan
 
-> ⚠️ **Penting:** `tikwm.com` adalah layanan pihak ketiga yang tidak resmi dan bisa berubah sewaktu-waktu (rate limit, format respons, ketersediaan). Untuk produksi skala besar, disarankan:
-> 1. Mengganti `TIKTOK_API_BASE` di `.env` dengan provider berbayar/resmi yang lebih stabil, atau
-> 2. Membangun layer ekstraksi sendiri, atau
-> 3. Menambahkan caching + fallback ke beberapa provider.
+## 📖 Cara Menggunakan
 
-## 🎨 Kustomisasi desain
+1. Buka video TikTok, lalu salin link-nya.
+2. Tempel link di kolom yang tersedia (atau klik tombol tempel).
+3. Pilih unduhan: **MP4 tanpa watermark** atau **MP3**.
 
-- Warna: edit `tailwind.config` di `index.html` (`tiktokred`, `tiktokcyan`, `ink`, `surface`).
-- Font: Poppins (display) + Inter (body), dimuat via Google Fonts.
-- Untuk produksi, sebaiknya build Tailwind via CLI (bukan CDN) agar CSS di-*purge* dan lebih ringan:
-  ```bash
-  npm install -D tailwindcss
-  npx tailwindcss init
-  # arahkan content ke ./public/**/*.html dan build ke public/css/tailwind.css
-  ```
+Tanpa instalasi, tanpa akun. Langsung pakai lewat browser.
 
-## 🔒 Keamanan & etika
+## 🧰 Tech Stack
 
-- Rate limiting sudah aktif di endpoint `/api/*` (default 30 req/menit/IP, atur via `.env`).
-- Disclaimer hak cipta ditampilkan di footer — pastikan pengguna hanya mengunduh konten yang mereka miliki haknya atau dengan izin.
-- Aplikasi ini tidak berafiliasi dengan TikTok Inc.
+| Bagian    | Teknologi                                    |
+| --------- | -------------------------------------------- |
+| Backend   | Node.js, Express                             |
+| Frontend  | HTML, Tailwind CSS, JavaScript vanilla       |
+| Hosting   | Vercel                                       |
+| Font      | Poppins (display) + Inter (body)             |
+| Ekstraksi | Provider pihak ketiga (tikwm.com)            |
 
-## 📦 Deploy
+## 🔒 Keamanan & Etika
 
-Kompatibel dengan Render, Railway, Fly.io, VPS (PM2), atau platform Node.js apa pun. Pastikan environment variable dari `.env.example` disalin ke pengaturan hosting.
+- Rate limiting aktif pada endpoint API untuk mencegah penyalahgunaan.
+- Unduh hanya konten milikmu atau yang sudah mendapat izin pemiliknya.
+- Layanan ini bergantung pada provider pihak ketiga yang tidak resmi, sehingga ketersediaannya bisa berubah sewaktu-waktu.
+- Proyek ini **tidak berafiliasi dengan TikTok Inc.** Seluruh merek dagang adalah milik pemiliknya masing-masing.
 
-```bash
-pm2 start server.js --name tiktoksnap
-```
+## 📄 Lisensi
+
+Dirilis di bawah [MIT License](LICENSE).
+
+---
+
+<div align="center">
+
+Dibuat dengan oleh **mkdircup** · Jika proyek ini membantu, beri ⭐ di GitHub
+
+</div>
