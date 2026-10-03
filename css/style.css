@@ -1,0 +1,162 @@
+/* ===================== Base ===================== */
+:root {
+  color-scheme: light dark;
+}
+
+* {
+  scrollbar-width: thin;
+}
+
+.mobile-link {
+  padding: 0.5rem 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+html.dark .mobile-link {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* ===================== Feature cards ===================== */
+.feature-card {
+  padding: 1.75rem 1.5rem;
+  border-radius: 1.25rem;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+html.dark .feature-card {
+  border-color: rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.03);
+}
+.feature-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(254, 44, 85, 0.35);
+  box-shadow: 0 12px 30px -12px rgba(254, 44, 85, 0.25);
+}
+.feature-icon {
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  border-radius: 0.9rem;
+  background: rgba(254, 44, 85, 0.12);
+  color: #fe2c55;
+  font-size: 1.1rem;
+}
+
+/* ===================== FAQ Accordion ===================== */
+.faq-item {
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 1rem;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(10px);
+}
+html.dark .faq-item {
+  border-color: rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.03);
+}
+.faq-question {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.1rem 1.25rem;
+  font-weight: 600;
+  font-size: 0.95rem;
+  text-align: left;
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  color: inherit;
+}
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  padding: 0 1.25rem;
+  transition: max-height 0.35s cubic-bezier(0.16, 1, 0.3, 1), padding 0.35s ease;
+  font-size: 0.875rem;
+  color: rgba(0, 0, 0, 0.6);
+  line-height: 1.6;
+}
+html.dark .faq-answer {
+  color: rgba(255, 255, 255, 0.6);
+}
+.faq-item.open .faq-answer {
+  max-height: 220px;
+  padding: 0 1.25rem 1.1rem;
+}
+.faq-item.open .faq-question i {
+  transform: rotate(180deg);
+  color: #fe2c55;
+}
+
+/* ===================== Toast ===================== */
+.toast {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.65rem;
+  padding: 0.85rem 1rem;
+  border-radius: 0.9rem;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #fff;
+  box-shadow: 0 10px 30px -8px rgba(0, 0, 0, 0.35);
+  animation: toastIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) both;
+  backdrop-filter: blur(6px);
+}
+.toast.hide {
+  animation: toastOut 0.3s ease forwards;
+}
+.toast.success { background: linear-gradient(135deg, #16a34a, #15803d); }
+.toast.error { background: linear-gradient(135deg, #fe2c55, #c81e42); }
+.toast.info { background: linear-gradient(135deg, #1f2937, #111827); }
+
+@keyframes toastIn {
+  from { opacity: 0; transform: translateX(30px) scale(0.96); }
+  to { opacity: 1; transform: translateX(0) scale(1); }
+}
+@keyframes toastOut {
+  to { opacity: 0; transform: translateX(30px) scale(0.96); }
+}
+
+/* ===================== History cards ===================== */
+.history-card {
+  display: flex;
+  gap: 0.75rem;
+  padding: 0.75rem;
+  border-radius: 1rem;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  background: rgba(255, 255, 255, 0.55);
+  backdrop-filter: blur(10px);
+  animation: fadeInUp 0.4s ease both;
+}
+html.dark .history-card {
+  border-color: rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.03);
+}
+.history-thumb {
+  width: 52px;
+  height: 68px;
+  object-fit: cover;
+  border-radius: 0.6rem;
+  flex-shrink: 0;
+  background: #0b0b0c;
+}
+
+/* ===================== Misc ===================== */
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}

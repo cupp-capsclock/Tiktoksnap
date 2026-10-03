@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="id" class="dark scroll-smooth">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>TikTokSnap — Download Video TikTok Tanpa Watermark Gratis</title>
+<meta name="description" content="TikTokSnap adalah downloader TikTok gratis untuk mengunduh video tanpa watermark dalam format MP4 dan ekstraksi audio MP3, cepat dan tanpa aplikasi tambahan." />
+<meta name="keywords" content="download tiktok, tiktok tanpa watermark, tiktok mp3, tiktok downloader, tiktoksnap" />
+<meta name="robots" content="index, follow" />
+<meta property="og:title" content="TikTokSnap — Download Video TikTok Tanpa Watermark" />
+<meta property="og:description" content="Download video TikTok tanpa watermark (MP4) dan ekstrak audio (MP3) secara gratis, cepat, dan mudah." />
+<meta property="og:type" content="website" />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚡</text></svg>" />
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+<!-- Tailwind (CDN build for rapid dev; for production, compile via CLI — see README) -->
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    darkMode: 'class',
+    theme: {
+      extend: {
+        fontFamily: {
+          display: ['Poppins', 'sans-serif'],
+          body: ['Inter', 'sans-serif'],
+        },
+        colors: {
+          tiktokred: '#FE2C55',
+          tiktokcyan: '#25F4EE',
+          ink: '#0B0B0C',
+          surface: '#151517',
+        },
+        boxShadow: {
+          glow: '0 0 0 1px rgba(254,44,85,0.15), 0 8px 40px -8px rgba(254,44,85,0.35)',
+        },
+        keyframes: {
+          fadeInUp: { '0%': { opacity: 0, transform: 'translateY(16px)' }, '100%': { opacity: 1, transform: 'translateY(0)' } },
+          scanline: { '0%': { transform: 'translateY(-100%)' }, '100%': { transform: 'translateY(100%)' } },
+          spinFast: { to: { transform: 'rotate(360deg)' } },
+        },
+        animation: {
+          fadeInUp: 'fadeInUp .7s cubic-bezier(.16,1,.3,1) both',
+          scanline: 'scanline 2.4s linear infinite',
+          spinFast: 'spinFast .8s linear infinite',
+        },
+      },
+    },
+  };
+</script>
+
+<link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body class="font-body bg-white text-ink dark:bg-ink dark:text-white antialiased transition-colors duration-300">
+
+<!-- ================= TOAST CONTAINER ================= -->
+<div id="toastContainer" class="fixed top-4 right-4 z-[100] flex flex-col gap-3 w-[92%] max-w-sm"></div>
+
+<!-- ================= NAVBAR ================= -->
+<header class="sticky top-0 z-50 backdrop-blur-lg bg-white/70 dark:bg-ink/70 border-b border-black/5 dark:border-white/10">
+  <nav class="max-w-6xl mx-auto px-5 sm:px-8 h-16 flex items-center justify-between">
+    <a href="#home" class="flex items-center gap-2 group">
+      <span class="relative w-8 h-8 grid place-items-center rounded-lg bg-ink dark:bg-white text-white dark:text-ink font-display font-extrabold text-sm">
+        <i class="fa-solid fa-bolt text-tiktokred"></i>
+      </span>
+      <span class="font-display font-bold text-lg tracking-tight">TikTok<span class="text-tiktokred">Snap</span></span>
+    </a>
+
+    <div class="hidden md:flex items-center gap-8 text-sm font-medium">
+      <a href="#home" class="hover:text-tiktokred transition-colors">Home</a>
+      <a href="#features" class="hover:text-tiktokred transition-colors">Features</a>
+      <a href="#faq" class="hover:text-tiktokred transition-colors">FAQ</a>
+    </div>
+
+    <div class="flex items-center gap-2">
+      <button id="themeToggle" aria-label="Ganti tema" class="w-10 h-10 grid place-items-center rounded-full border border-black/10 dark:border-white/15 hover:border-tiktokred/60 transition-colors">
+        <i class="fa-solid fa-sun hidden dark:block text-amber-300"></i>
+        <i class="fa-solid fa-moon dark:hidden text-ink"></i>
+      </button>
+      <button id="mobileMenuBtn" aria-label="Buka menu" class="md:hidden w-10 h-10 grid place-items-center rounded-full border border-black/10 dark:border-white/15">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile menu -->
+  <div id="mobileMenu" class="hidden md:hidden border-t border-black/5 dark:border-white/10 px-5 py-4 flex flex-col gap-4 text-sm font-medium bg-white dark:bg-ink">
+    <a href="#home" class="mobile-link">Home</a>
+    <a href="#features" class="mobile-link">Features</a>
+    <a href="#faq" class="mobile-link">FAQ</a>
+  </div>
+</header>
+
+<!-- ================= HERO ================= -->
+<section id="home" class="relative overflow-hidden">
+  <!-- ambient glow -->
+  <div class="pointer-events-none absolute -top-40 left-1/2 -translate-x-1/2 w-[700px] h-[700px] rounded-full bg-tiktokred/20 blur-[120px]"></div>
+  <div class="pointer-events-none absolute top-40 right-0 w-[400px] h-[400px] rounded-full bg-tiktokcyan/10 blur-[110px]"></div>
+
+  <div class="relative max-w-6xl mx-auto px-5 sm:px-8 pt-16 pb-20 grid lg:grid-cols-2 gap-14 items-center">
+    <!-- Left: copy + form -->
+    <div class="animate-fadeInUp">
+      <span class="inline-flex items-center gap-2 text-xs font-semibold tracking-wide uppercase px-3 py-1.5 rounded-full bg-tiktokred/10 text-tiktokred border border-tiktokred/20">
+        <i class="fa-solid fa-water"></i> 100% Tanpa Watermark
+      </span>
+
+      <h1 class="font-display font-extrabold text-4xl sm:text-5xl leading-[1.1] mt-5 tracking-tight">
+        Download Video TikTok<br class="hidden sm:block" />
+        <span class="text-tiktokred">Tanpa Watermark</span> Secara Gratis
+      </h1>
+
+      <p class="mt-5 text-base sm:text-lg text-black/60 dark:text-white/60 max-w-lg">
+        Tempel link video TikTok, dan unduh dalam hitungan detik — kualitas HD, tanpa watermark, plus ekstraksi audio MP3. Tanpa install aplikasi.
+      </p>
+
+      <!-- Input form -->
+      <div class="mt-8 p-4 sm:p-5 rounded-2xl bg-white/60 dark:bg-white/[0.04] border border-black/10 dark:border-white/10 backdrop-blur-xl shadow-glow">
+        <label for="tiktokUrl" class="sr-only">Link video TikTok</label>
+        <div class="flex flex-col sm:flex-row gap-2">
+          <div class="relative flex-1">
+            <i class="fa-solid fa-link absolute left-4 top-1/2 -translate-y-1/2 text-black/30 dark:text-white/30"></i>
+            <input
+              id="tiktokUrl"
+              type="url"
+              inputmode="url"
+              placeholder="Tempel link TikTok di sini… (https://vt.tiktok.com/...)"
+              class="w-full h-12 pl-11 pr-11 rounded-xl bg-white dark:bg-white/5 border border-black/10 dark:border-white/10 focus:outline-none focus:ring-2 focus:ring-tiktokred/50 focus:border-tiktokred/50 text-sm placeholder:text-black/35 dark:placeholder:text-white/30 transition-all"
+              autocomplete="off"
+            />
+            <button id="pasteBtn" title="Tempel dari clipboard" class="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 grid place-items-center rounded-lg hover:bg-black/5 dark:hover:bg-white/10 transition-colors">
+              <i class="fa-regular fa-clipboard text-black/40 dark:text-white/40"></i>
+            </button>
+          </div>
+          <button id="processBtn" class="h-12 px-6 rounded-xl bg-ink dark:bg-white text-white dark:text-ink font-semibold text-sm flex items-center justify-center gap-2 hover:opacity-90 active:scale-[0.98] transition-all whitespace-nowrap">
+            <i class="fa-solid fa-magnifying-glass"></i> Proses Link
+          </button>
+        </div>
+        <p id="urlHint" class="mt-2 text-xs text-black/40 dark:text-white/35 pl-1 min-h-[16px]"></p>
+
+        <!-- Download buttons -->
+        <div class="mt-3 grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <button id="downloadMp4Btn" disabled class="download-btn h-12 rounded-xl bg-tiktokred text-white font-semibold text-sm flex items-center justify-center gap-2 disabled:opacity-40 disabled:cursor-not-allowed hover:brightness-110 active:scale-[0.98] transition-all">
+            <i class="fa-solid fa-video"></i> Download MP4 Tanpa Watermark
+          </button>
+          <button id="downloadMp3Btn" disabled class="download-btn h-12 rounded-xl border-2 border-ink dark:border-white text-ink dark:text-white font-semibold text-sm flex items-center justify-center gap-2 disabled:opacity-40 disabled:cursor-not-allowed hover:bg-ink hover:text-white dark:hover:bg-white dark:hover:text-ink active:scale-[0.98] transition-all">
+            <i class="fa-solid fa-music"></i> Download MP3
+          </button>
+        </div>
+      </div>
+
+      <div class="mt-4 flex items-center gap-5 text-xs text-black/40 dark:text-white/35">
+        <span class="flex items-center gap-1.5"><i class="fa-solid fa-shield-halved text-tiktokred/70"></i> Aman &amp; Privat</span>
+        <span class="flex items-center gap-1.5"><i class="fa-solid fa-bolt text-tiktokred/70"></i> Proses Cepat</span>
+        <span class="flex items-center gap-1.5"><i class="fa-solid fa-infinity text-tiktokred/70"></i> Tanpa Batas</span>
+      </div>
+    </div>
+
+    <!-- Right: preview mock / result card -->
+    <div class="relative flex justify-center animate-fadeInUp [animation-delay:150ms]">
+      <div class="relative w-[260px] sm:w-[290px] rounded-[2.2rem] p-2 bg-gradient-to-b from-tiktokred/40 via-white/10 to-tiktokcyan/30 shadow-2xl">
+        <div id="previewPhone" class="relative rounded-[1.8rem] overflow-hidden bg-surface aspect-[9/16] flex items-center justify-center">
+
+          <!-- idle state -->
+          <div id="previewIdle" class="flex flex-col items-center gap-3 text-white/40 px-6 text-center">
+            <i class="fa-brands fa-tiktok text-5xl"></i>
+            <p class="text-xs">Preview video akan muncul di sini setelah link diproses</p>
+          </div>
+
+          <!-- loading state -->
+          <div id="previewLoading" class="hidden absolute inset-0 flex flex-col items-center justify-center gap-4 bg-surface/95">
+            <div class="w-12 h-12 rounded-full border-4 border-white/10 border-t-tiktokred animate-spinFast"></div>
+            <p class="text-xs text-white/60">Mengambil data video…</p>
+            <div class="w-2/3 h-1 rounded-full bg-white/10 overflow-hidden">
+              <div id="progressBar" class="h-full w-1/4 bg-tiktokred rounded-full transition-all duration-300"></div>
+            </div>
+          </div>
+
+          <!-- result state -->
+          <div id="previewResult" class="hidden absolute inset-0">
+            <img id="previewThumb" src="" alt="Thumbnail video TikTok" class="w-full h-full object-cover" />
+            <div class="absolute inset-x-0 bottom-0 p-3 bg-gradient-to-t from-black/85 to-transparent">
+              <p id="previewTitle" class="text-white text-xs font-semibold line-clamp-2"></p>
+              <p id="previewAuthor" class="text-white/60 text-[11px] mt-0.5"></p>
+            </div>
+            <span class="absolute top-3 left-3 text-[10px] font-bold px-2 py-1 rounded-full bg-tiktokred text-white flex items-center gap-1">
+              <i class="fa-solid fa-check"></i> HD Ready
+            </span>
+          </div>
+
+          <!-- animated scanline for signature detail -->
+          <div class="pointer-events-none absolute inset-0 overflow-hidden opacity-20">
+            <div class="absolute inset-x-0 h-1/3 bg-gradient-to-b from-transparent via-tiktokcyan/40 to-transparent animate-scanline"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= HISTORY ================= -->
+<section id="history" class="max-w-6xl mx-auto px-5 sm:px-8 pb-4">
+  <div class="flex items-center justify-between mb-4">
+    <h3 class="font-display font-semibold text-lg flex items-center gap-2">
+      <i class="fa-solid fa-clock-rotate-left text-tiktokred"></i> Riwayat Download
+    </h3>
+    <button id="clearHistoryBtn" class="text-xs text-black/40 dark:text-white/40 hover:text-tiktokred transition-colors">
+      <i class="fa-solid fa-trash-can"></i> Hapus semua
+    </button>
+  </div>
+  <div id="historyList" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
+    <p id="historyEmpty" class="text-sm text-black/40 dark:text-white/35 col-span-full py-6 text-center border border-dashed border-black/10 dark:border-white/10 rounded-xl">
+      Belum ada riwayat download. Mulai unduh video pertamamu di atas ✨
+    </p>
+  </div>
+</section>
+
+<!-- ================= FEATURES ================= -->
+<section id="features" class="max-w-6xl mx-auto px-5 sm:px-8 py-20">
+  <div class="text-center max-w-xl mx-auto mb-12">
+    <span class="text-xs font-semibold uppercase tracking-wide text-tiktokred">Kenapa TikTokSnap</span>
+    <h2 class="font-display font-bold text-3xl mt-3">Dibuat untuk kecepatan &amp; kesederhanaan</h2>
+  </div>
+
+  <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+    <div class="feature-card">
+      <div class="feature-icon"><i class="fa-solid fa-gauge-high"></i></div>
+      <h3 class="font-display font-semibold mt-4">Cepat</h3>
+      <p class="text-sm text-black/55 dark:text-white/50 mt-1.5">Proses ekstraksi hanya butuh beberapa detik, tanpa antrian.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon"><i class="fa-solid fa-droplet-slash"></i></div>
+      <h3 class="font-display font-semibold mt-4">Tanpa Watermark</h3>
+      <p class="text-sm text-black/55 dark:text-white/50 mt-1.5">Video hasil unduhan bersih, siap dipakai ulang tanpa logo TikTok.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon"><i class="fa-solid fa-gift"></i></div>
+      <h3 class="font-display font-semibold mt-4">Gratis</h3>
+      <p class="text-sm text-black/55 dark:text-white/50 mt-1.5">Tidak ada biaya, tidak ada limit tersembunyi, dan tanpa akun.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon"><i class="fa-solid fa-tv"></i></div>
+      <h3 class="font-display font-semibold mt-4">Support HD</h3>
+      <p class="text-sm text-black/55 dark:text-white/50 mt-1.5">Unduh kualitas terbaik yang tersedia dari video asli.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FAQ ================= -->
+<section id="faq" class="max-w-3xl mx-auto px-5 sm:px-8 py-20">
+  <div class="text-center mb-10">
+    <span class="text-xs font-semibold uppercase tracking-wide text-tiktokred">FAQ</span>
+    <h2 class="font-display font-bold text-3xl mt-3">Pertanyaan yang sering diajukan</h2>
+  </div>
+
+  <div class="space-y-3" id="faqList">
+    <div class="faq-item">
+      <button class="faq-question">
+        <span>Bagaimana cara download video TikTok?</span>
+        <i class="fa-solid fa-chevron-down transition-transform"></i>
+      </button>
+      <div class="faq-answer">
+        <p>Salin link video TikTok yang ingin diunduh, tempel ke kolom input di atas (atau biarkan TikTokSnap mendeteksinya otomatis dari clipboard), lalu klik "Proses Link". Setelah preview muncul, pilih Download MP4 atau Download MP3.</p>
+      </div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question">
+        <span>Apakah TikTokSnap benar-benar gratis?</span>
+        <i class="fa-solid fa-chevron-down transition-transform"></i>
+      </button>
+      <div class="faq-answer">
+        <p>Ya, sepenuhnya gratis tanpa batasan jumlah unduhan, tanpa perlu mendaftar akun, dan tanpa biaya tersembunyi.</p>
+      </div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question">
+        <span>Apakah support di semua perangkat?</span>
+        <i class="fa-solid fa-chevron-down transition-transform"></i>
+      </button>
+      <div class="faq-answer">
+        <p>TikTokSnap berjalan langsung di browser, sehingga bisa digunakan di HP (Android/iOS), tablet, maupun desktop tanpa perlu instal aplikasi tambahan.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer class="border-t border-black/10 dark:border-white/10">
+  <div class="max-w-6xl mx-auto px-5 sm:px-8 py-10">
+    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+      <div class="flex items-center gap-2">
+        <span class="w-7 h-7 grid place-items-center rounded-lg bg-ink dark:bg-white text-white dark:text-ink">
+          <i class="fa-solid fa-bolt text-tiktokred text-xs"></i>
+        </span>
+        <span class="font-display font-bold">TikTok<span class="text-tiktokred">Snap</span></span>
+      </div>
+      <div class="flex gap-5 text-sm text-black/50 dark:text-white/50">
+        <a href="#home" class="hover:text-tiktokred transition-colors">Home</a>
+        <a href="#features" class="hover:text-tiktokred transition-colors">Features</a>
+        <a href="#faq" class="hover:text-tiktokred transition-colors">FAQ</a>
+      </div>
+    </div>
+    <p class="text-xs text-black/40 dark:text-white/35 mt-6 leading-relaxed">
+      <strong>Disclaimer:</strong> TikTokSnap adalah alat pihak ketiga yang tidak berafiliasi dengan TikTok Inc. Gunakan hanya untuk konten yang kamu miliki haknya atau dengan izin pemilik konten. Hormati hak cipta dan Ketentuan Layanan TikTok saat mengunduh dan membagikan ulang video.
+    </p>
+    <p class="text-xs text-black/30 dark:text-white/25 mt-3">© <span id="year"></span> TikTokSnap. Seluruh hak cipta dilindungi. · By MkdirCup</p>
+  </div>
+</footer>
+
+<script src="js/app.js"></script>
+</body>
+</html>
